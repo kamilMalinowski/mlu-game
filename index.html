@@ -7,19 +7,29 @@
     <link rel="stylesheet" href="style.css">
     <title>MLU Game | Home</title>
   </head>
-  <body>
+  <body class="body">
     <script src="https://unpkg.com/vue@3"></script>
 
-    <div id="app">{{ message }}</div>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <ul>
+            <li>{{ memo_1 }}
+                <a href="{{ link_1 }}">{{ link_1 }}</a>
+            </li>
+        </ul>
+    </div>
 
     <script>
       Vue.createApp({
         data() {
           return {
             message: 'Hello Vue!',
+            memo_1: '+ Learn Vue.js basics! from',
+            link_1: 'https://code.tutsplus.com/courses/get-started-with-vue/lessons/creating-your-first-vue-app'
           }
         },
       }).mount('#app')
     </script>
+
   </body>
 </html>
