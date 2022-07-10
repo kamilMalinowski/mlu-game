@@ -12,3 +12,41 @@
   font-family: 'Barlow', sans-serif;
   font-size: 16px;
 }
+ul {
+  list-style: none;
+}
+div {
+  padding: 20px;
+  border-bottom: 2px solid #41b28c;
+}
+button {
+  margin: 20px 20px 0 0;
+  padding: 10px;
+  border: none;
+  background-color: #41b28c;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #4cd2a5;
+}
+input {
+  border-bottom: 2px solid #41b28c;
+  border-radius: 4px;
+  padding: 8px;
+  color: #41b28c;
+  margin: 0 20px 0 0;
+}
+code,
+a {
+  color: #41b28c;
+}
+b {
+  border-top: 6px solid #b241aa;
+  color: #b241aa;
+  width: 100%;
+  display: block;
+}
