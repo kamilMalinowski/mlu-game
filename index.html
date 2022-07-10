@@ -4,19 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>MLU Game | Home</title>
   </head>
   <body class="body">
     <script src="https://unpkg.com/vue@3"></script>
 
     <div id="app">
-        <h1>{{ message }}</h1>
-        <ul>
-            <li>{{ memo_1 }}
-                <a href="{{ link_1 }}">{{ link_1 }}</a>
-            </li>
-        </ul>
+      <h1>{{ message }}</h1>
+      <ul>
+        <li>
+          {{ memo_1 }}
+          <a href="{{ link_1 }}">{{ link_1 }}</a>
+        </li>
+      </ul>
     </div>
 
     <script>
@@ -25,11 +26,297 @@
           return {
             message: 'Hello Vue!',
             memo_1: '+ Learn Vue.js basics! from',
-            link_1: 'https://code.tutsplus.com/courses/get-started-with-vue/lessons/creating-your-first-vue-app'
+            link_1:
+              'https://code.tutsplus.com/courses/get-started-with-vue/lessons/creating-your-first-vue-app',
           }
         },
       }).mount('#app')
     </script>
 
+    <!-- lesson 1 -->
+    <code><b>PART 1</b></code>
+    <div id="lesson_1">
+      <code>Lesson 1</code>
+      <h2>{{ title }}</h2>
+      <p>{{ message }}</p>
+    </div>
+
+    <script class="lesson_1">
+      const lesson_1 = document.querySelector('.lesson_1')
+
+      let HelloWorldApp = {
+        data() {
+          return {
+            title: 'Our First App',
+            message: 'Hello, World',
+          }
+        },
+      }
+      Vue.createApp(HelloWorldApp).mount('#lesson_1')
+
+      console.log('lesson 1: ' + lesson_1.innerHTML)
+    </script>
+
+    <!-- lesson 2 -->
+    <div id="lesson_2">
+      <code>Lesson 2</code>
+      <h2>Counter: {{ count }}</h2>
+    </div>
+
+    <script class="lesson_2">
+      const lesson_2 = document.querySelector('.lesson_2')
+
+      let CounterApp = {
+        data() {
+          return {
+            count: 0,
+          }
+        },
+        mounted() {
+          setInterval(() => this.count++, 1000)
+        },
+      }
+      Vue.createApp(CounterApp).mount('#lesson_2')
+
+      console.log('lesson 2: ' + lesson_2.innerHTML)
+    </script>
+
+    <!-- lesson 3 -->
+    <div id="lesson_3">
+      <code>Lesson 3</code>
+      <h2>Counter: {{ count }}</h2>
+      <button v-on:click="start()">START</button>
+      <button @click="stop()">STOP</button>
+    </div>
+
+    <script class="lesson_3">
+      const lesson_3 = document.querySelector('.lesson_3')
+
+      let CounterApp2 = {
+        data() {
+          return {
+            count: 0,
+            handle: null,
+          }
+        },
+        methods: {
+          clear() {
+            this.count = 0
+          },
+          start() {
+            this.clear()
+            this.handle = setInterval(() => this.count++, 1000)
+          },
+          stop() {
+            clearInterval(this.handle)
+          },
+        },
+      }
+      Vue.createApp(CounterApp2).mount('#lesson_3')
+
+      console.log('lesson 3: ' + lesson_3.innerHTML)
+    </script>
+
+    <!-- lesson 4 -->
+    <div id="lesson_4">
+      <code>Lesson 4</code>
+      <h2 v-bind:title="title" :data-special="message">{{ message }}</h2>
+    </div>
+
+    <script class="lesson_4">
+      const lesson_4 = document.querySelector('.lesson_4')
+
+      let HelloWorldApp2 = {
+        data() {
+          return {
+            message: 'Hello Lesson 4',
+            title: 'I learn v-bind',
+          }
+        },
+      }
+      Vue.createApp(HelloWorldApp2).mount('#lesson_4')
+
+      console.log('lesson 4: ' + lesson_4.innerHTML)
+    </script>
+
+    <!-- lesson 5 -->
+    <div id="lesson_5">
+      <code>Lesson 5</code>
+      <form @submit.prevent="checkForm()">
+        <!-- <input type="text" :value="message" @input="message = $event.target.value"> -->
+        <input type="text" v-model="message" />
+        <button>SUBMIT</button>
+      </form>
+    </div>
+
+    <script class="lesson_5">
+      const lesson_5 = document.querySelector('.lesson_5')
+
+      let InputApp = {
+        data() {
+          return {
+            message: '',
+          }
+        },
+        methods: {
+          checkForm() {
+            if (this.message) {
+              // submit()
+            } else {
+              alert('Supply value')
+            }
+          },
+        },
+      }
+      Vue.createApp(InputApp).mount('#lesson_5')
+
+      console.log('lesson 5: ' + lesson_5.innerHTML)
+    </script>
+
+    <!-- lesson 6 -->
+    <div id="lesson_6">
+      <code>Lesson 6</code>
+      <form @submit.prevent="checkForm2()">
+        <!-- <input type="text" :value="message" @input="message = $event.target.value"> -->
+        <label for="">Your Favorite Color </label>
+        <input type="text" v-model="color" />
+        <button>SUBMIT</button>
+      </form>
+      <!-- <p v-show="showMessage">Blue is my favorite, too!</p> -->
+      <!-- <p v-if="showMessage">Blue is my favorite, too!</p> -->
+      <!-- <p v-else>Another message.</p> -->
+      <!-- <p v-else-if="showMessage">Wrong message.</p> -->
+      <p v-if="favoriteMessage">{{favoriteMessage}}</p>
+    </div>
+
+    <script class="lesson_6">
+      const lesson_6 = document.querySelector('.lesson_6')
+
+      let Show = {
+        data() {
+          return {
+            color: '',
+            // showMessage: false,
+            favoriteMessage: '',
+          }
+        },
+        methods: {
+          checkForm2() {
+            // if (!this.color) {
+            //   alert('Please enter a color')
+            //   return
+            // }
+            this.favoriteMessage = 'That is not my favorite color'
+            if (this.color === 'blue') {
+              this.favoriteMessage = 'That is my favorite, too!'
+            }
+            // this.showMessage = this.color === 'blue'
+          },
+        },
+      }
+      Vue.createApp(Show).mount('#lesson_6')
+
+      console.log('lesson 6: ' + lesson_6.innerHTML)
+    </script>
+
+    <!-- lesson 7 -->
+    <div id="lesson_7">
+      <code>Lesson 7</code>
+      <ul>
+        <li v-for="(guitar, index) in guitars" :key="index">
+          {{index}}: {{guitar}}
+        </li>
+      </ul>
+    </div>
+
+    <script class="lesson_7">
+      const lesson_7 = document.querySelector('.lesson_7')
+
+      let GuitarApp = {
+        data() {
+          return {
+            guitars: [
+              'Gibson Les Paul',
+              'Fender Strat',
+              'Gibson Explorer',
+              'PRS Vela',
+              'PRS Starla',
+            ],
+          }
+        },
+      }
+      Vue.createApp(GuitarApp).mount('#lesson_7')
+
+      console.log('lesson 7: ' + lesson_7.innerHTML)
+    </script>
+
+    <!-- lesson 8 -->
+    <code><b>PART 2</b></code>
+    <div id="lesson_8">
+      <code>Lesson 8</code>
+      <list :items="guitars"></list>
+      <br />
+      <list :items="fruits"></list>
+    </div>
+
+    <script class="lesson_8">
+      const lesson_8 = document.querySelector('.lesson_8')
+
+      let app = Vue.createApp({
+        data() {
+          return {
+            guitars: [
+              'Gibson Les Paul',
+              'Fender Strat',
+              'Gibson Explorer',
+              'PRS Vela',
+              'PRS Starla',
+            ],
+            fruits: ['apple', 'banana', 'orange'],
+          }
+        },
+      })
+
+      app.component('list', {
+        props: ['items'],
+        template: `<ul>
+                      <li v-for="(item, index) in items" :key="index">
+                        {{index}}: {{item}}
+                      </li>
+                   </ul>
+                  `,
+      })
+      app.mount('#lesson_8')
+
+      console.log('lesson 8: ' + lesson_8.innerHTML)
+    </script>
+
+    <!-- lesson 9 - not completed ==> Changing an element's style-->
+    <div id="lesson_9">
+      <code>Lesson 9</code>
+    </div>
+
+    <script class="lesson_9">
+      const lesson_9 = document.querySelector('.lesson_9')
+
+      let app2 = Vue.createApp({
+        data() {
+          return {}
+        },
+      })
+
+      app2.component('list', {
+        props: ['items'],
+        template: `<ul>
+                      <li v-for="(item, index) in items" :key="index">
+                        {{index}}: {{item}}
+                      </li>
+                   </ul>
+                  `,
+      })
+      app.mount('#lesson_9')
+
+      console.log('lesson 9: ' + lesson_9.innerHTML)
+    </script>
   </body>
 </html>
